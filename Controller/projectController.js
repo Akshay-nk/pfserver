@@ -29,3 +29,49 @@ const projects =require('../Models/projectSchema')
         res.status(401).json(`Request failed $(error)`)
     }
 }
+
+
+//get projects
+
+exports.allUserprojects=async(req,res)=>
+{
+    const userId=req.payload
+    try{
+        const userProjects=await projects.find({userId})
+        res.status(200).json(userProjects)
+
+    }
+    catch(error)
+    {
+        res.status(401).json(error)
+
+    }
+}
+
+//getall projects
+
+exports.allProjects=async(req,res)=>{
+
+    try {
+
+        const allProjects=await projects.find()
+        res.status(200).json(allProjects)
+        
+    } catch (error) {
+        res.statusP(401).json(error)
+    }
+}
+
+//home projects
+
+exports.getHomeProjects=async(req,res)=>{
+
+    try {
+
+        const homeProjects=await projects.find().limit(3)
+        res.status(200).json(homeProjects)
+        
+    } catch (error) {
+        res.status(401).json(error)
+    }
+}

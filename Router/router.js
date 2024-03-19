@@ -15,6 +15,20 @@ const multerConfig = require('../Middlewares/multerMiddleware');
 
 router.post("/projects/add",jwtMiddleware,multerConfig.single('projectImage'),projectController.addProjects)
 
+//get user project
+
+router.get('/user/allprojects',jwtMiddleware,projectController.allUserprojects)
+
+//get all projects
+
+router.get('/projects/all',jwtMiddleware,projectController.allProjects)
+
+
+//home projects
+
+router.get('/projects/homeprojects',projectController.getHomeProjects)
+
+
 
 
 
